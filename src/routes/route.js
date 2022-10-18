@@ -14,6 +14,53 @@ router.get('/students', function (req, res){
     res.send(students)
 })
 
+//Problem1: print the movie's array
+router.get('/movies',function(req, res){
+    const moviearr =["Rang de basanti","The shining", "Lord of the rings", "Batman begins" ]  
+    console.log("print movie name==>", moviearr )
+    res.send('print')
+})
+
+//Problem2: 
+   router.get('/movies/:indexNumber', function(req,res){
+   const movie$arr = ["Rang de basanti","The shining", "Lord of the rings", "Batman begins" ] 
+   const index = req.params.indexNumber
+   console.log('print movie name usning index==>',movie$arr)
+   
+    res.send('movie name by index ' + movie$arr[index])
+
+})
+
+//Problem4:
+router.get('/films',function(req,res){
+const movie$2arr =   [ {
+"id": 1,
+"name": "The Shining"
+}, {
+"id": 2,
+"name": "Incendies"
+}, {
+"id": 3,
+"name": "Rang de Basanti"
+}, {
+"id": 4,
+"name": "Finding Nemo"
+}]
+console.log( 'print array object==>', movie$2arr)
+res.send(movie$2arr)
+})
+
+
+//Problem5:
+router.get('/film/:filmId', function(req,res){
+    const movie$3arr = ["Rang de basanti","The shining", "Lord of the rings", "Batman begins" ] 
+    const i = req.params.indexNumber
+    console.log('print movie name =>', movie$3arr)
+    
+    res.send('print responce using index number' +  movie$3arr[i])
+
+})
+
 
 // Example 1 for path params
 router.get('/students/:studentName', function(req, res){

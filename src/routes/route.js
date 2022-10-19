@@ -26,26 +26,24 @@ res.send({data:missingNumber})
 
 //(PROBLEM-2)
 
-router.get('/missing-number2',function(req,res){
+router.get('/sol2', function(req,rs){
     function missing(input){
         let N = input.length + 1
-        let first = input[0]
-        let last = input[input.length - 1]
-        var sum = N * (first + last);
-        sum = sum  / 2;
-        var output = 0;
-        
-        for(var i=0; i<input.length; i++)
-        {
-            output = output + input[i];
-            console.log(sum - output)
-            
-        }
+        let fisrt = input[0]
+        let last = input[input.length -1]
+        var sum = N * (fisrt + last);
+        sum = sum /2;
+        var output = 0
 
-       
+        for (let i=0; i<input.length; i++)
+        {
+            output = output + input[i]
+            console.log(sum - output)
+        }
     }
-     missing([33, 34, 35, 37, 38, 39])
-     res.send({data:missingNumber});
+
+    missing ([33, 34, 35, 37, 38, 39])
+    res.send({data:missingNumber})
 })
 
 

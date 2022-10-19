@@ -1,107 +1,73 @@
 const express = require('express');
-const myHelper = require('../util/helper')
-const underscore = require('underscore')
+
+const { application } = require('express');
 
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    myHelper.printDate()
-    myHelper.getCurrentMonth()
-    myHelper.getCohortData()
-    let firstElement = underscore.first(['Sabiha','Akash','Pritesh'])
-    console.log('The first element received from underscope function is '+firstElement)
-    res.send('My first ever api!')
-});
 
-router.get("/movies/:indexNumber", function(req, res){
-    const movies = ["Rang de basanti", "The shining", "Lord of the rings", "Batman begins"]
-    console.log(req.params.indexNumber)
-    let movieIndex = req.params.indexNumber
-    //check index value. less than 0 or greater than array (length - 1) are not valid
-    if(movieIndex<0 || movieIndex>=movies.length) {
-        //if the index is invalid send an error message
-        return res.send('The index value is not correct, Please check the it')
+
+//(PROBLEM-1) solution of assignment of api-mission 
+router.get('/missing-no', function(req,res){
+      const num$arr = [1, 2, 3, 5, 6, 7];
+function missingNumber(num$arr){
+    let n = num$arr.length;
+    let sum = ((n+2) * (n+1)) / 2;
+    for (let i = 0; i< n; i++){
+        sum = sum - num$arr[i]
     }
 
-    //if the index was valid send the movie at that index in response
-    let requiredMovie = movies[movieIndex]
-    res.send(requiredMovie)
+    return sum;
+}
+
+console.log(missingNumber(num$arr))
 })
 
-router.get("/shoes", function(req, res){
-    let queryParams = req.query
-    let brand = queryParams.brand
-    res.send("dummy response")
+
+//(PROBLEM-2)
+
+router.get('/missing-no2',function(req,res){
+    function missing(input){
+        let N = input.length + 1
+        let first = input[0]
+        let last = input[input.length - 1]
+        var sum = N * (first + last);
+        sum = sum  / 2;
+        var output = 0;
+        
+        for(var i = 0; i<input.length;i++){
+            output = output + input[i];
+            console.log(sum - output)
+            
+        }
+
+       
+    }
+     missing([33, 34, 35, 37, 38, 39])
 })
 
-// uses query params
-router.get('/candidates', function(req, res){
-    console.log('Query paramters for this request are '+JSON.stringify(req.query))
-    let gender = req.query.gender
-    let state = req.query.state
-    let district = req.query.district
-    console.log('State is '+state)
-    console.log('Gender is '+gender)
-    console.log('District is '+district)
-    let candidates = ['Akash','Suman']
-    res.send(candidates)
-})
 
-// use path param
-router.get('/candidates/:canidatesName', function(req, res){
-    console.log('The request objects is '+ JSON.stringify(req.params))
-    console.log('Candidates name is '+req.params.canidatesName)
-    res.send('Done')
-})
 
-router.get("/films", function(req, res){
-    const films = [ {
-        "id": 1,
-        "name": "The Shining"
-       }, {
-        "id": 2,
-        "name": "Incendies"
-       }, {
-        "id": 3,
-        "name": "Rang de Basanti"
-       }, {
-        "id": 4,
-        "name": "Finding Nemo"
-       }]
-       //send all the films
-      res.send(films) 
-})
 
-router.get("/films/:filmId", function(req, res){
-    const films = [ {
-        "id": 1,
-        "name": "The Shining"
-       }, {
-        "id": 2,
-        "name": "Incendies"
-       }, {
-        "id": 3,
-        "name": "Rang de Basanti"
-       }, {
-        "id": 4,
-        "name": "Finding Nemo"
-       }]
 
-       let filmId = req.params.filmId
 
-       //iterate all the films
-       //search for a film whose id matches with the id recevied in request
-       for(let i = 0; i < films.length; i++){
-           let film = films[i]
-           if(film.id == filmId) {
-               //if there is a match return the response from here
-               return res.send(film)
-           }
-       }
 
-       //if there is no match give an error response
-       res.send("The film id doesn't match any movie")
-})
+
+
+
+//rough work
+//const numarray$ = [1, 2, 3, 5, 6, 7]
+// const sumOfTheNumarray$ =  n(n+1)/2
+// sumOfTheNumarray$ = n(n+1)/2 - missingNumber
+// MissingNumber =  n(n+1)/2 - sumOfTheNumarray$
+// res.send({data:missingNumber})
+
+
+
+
+
+
+   
+
 
 module.exports = router;
 // adding this comment for no reason

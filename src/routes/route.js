@@ -9,7 +9,7 @@ const router = express.Router();
 //(PROBLEM-1) solution of assignment of api-mission 
 router.get('/missing-no', function(req,res){
       const num$arr = [1, 2, 3, 5, 6, 7];
-function missingNumber(num$arr){
+    function missingNumber(num$arr){
     let n = num$arr.length;
     let sum = ((n+2) * (n+1)) / 2;
     for (let i = 0; i< n; i++){
@@ -17,15 +17,16 @@ function missingNumber(num$arr){
     }
 
     return sum;
+    
 }
-
 console.log(missingNumber(num$arr))
+res.send({data:missingNumber})
 })
 
 
 //(PROBLEM-2)
 
-router.get('/missing-no2',function(req,res){
+router.get('/missing-number2',function(req,res){
     function missing(input){
         let N = input.length + 1
         let first = input[0]
@@ -34,7 +35,8 @@ router.get('/missing-no2',function(req,res){
         sum = sum  / 2;
         var output = 0;
         
-        for(var i = 0; i<input.length;i++){
+        for(var i=0; i<input.length; i++)
+        {
             output = output + input[i];
             console.log(sum - output)
             
@@ -43,6 +45,7 @@ router.get('/missing-no2',function(req,res){
        
     }
      missing([33, 34, 35, 37, 38, 39])
+     res.send({data:missingNumber});
 })
 
 

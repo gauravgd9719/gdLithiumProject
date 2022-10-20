@@ -35,7 +35,7 @@ let persons= [
 
  router.post('/person-votings', function(req,res){
     let votingAge = req.query.votingAge
-    let elegibleAge  = persons.filter(x=>x.age>votingAge)
+    let elegibleAge  = persons.filter( x => x.age > votingAge)
     res.send({data:elegibleAge, status:true})
 
     })

@@ -60,6 +60,56 @@ router.post("/test-post-3", function(req, res) {
 
     res.send(  { msg: "hi" , status: true }  )
 })
+// assignment on post-api from lithium cohort 
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",     
+            "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ]
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ]
+       },
+   ]
+
+
+   router.post('/players', function(req,res){
+     const body = req.body
+     //player name shoudl be unique, this name should not exist in the paleyrs array
+     //how to check that name is exist or not 
+     const player = players.find(x => x.name === body.name)
+     // when ther is no mathc found then find will return undefined ==> false 
+     //will return player // true 
+
+     if(player){
+        res.send({message:"player alerasdy exist"})
+     } else {
+        players.push(body)
+        res.send(player)
+     }
+
+   })
 
 
 

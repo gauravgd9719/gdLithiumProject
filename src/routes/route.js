@@ -1,21 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
-const authorController= require("../controllers/authorController")
-const bookController= require("../controllers/bookController")
+const controller= require("../controllers/Controller")
 
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
 
-router.post("/createAuthor", authorController.createAuthor  )
 
-router.get("/getAuthorsData", authorController.getAuthorsData)
+//post api for create newBook
+router.post("/createNewBook",controller.createNewBook)
 
-router.post("/createBook", bookController.createBook  )
+// post api for create newAuthor 
+router.post("/createNewAuthor", controller.createNewAuthor)
 
-router.get("/getBooksData", bookController.getBooksData)
+// post api for created newPublisher
+router.post("/createNewPublisher",controller.createNewPublisher)
 
-router.get("/getBooksWithAuthorDetails", bookController.getBooksWithAuthorDetails)
+//if author id is not available in req body them send msg
+ router.get("/findByIdBook", controller.findByIdBook)
+
+ //if publisher id is not present 
+ router.get("/findPublisherById",controller.findPublisherById)
+
+ //fetch all book and author , use with ref and populate 
+ router.get("/fetchAllBook",controller.fetchallBook)
 
 module.exports = router;

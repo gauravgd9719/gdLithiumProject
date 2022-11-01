@@ -52,9 +52,9 @@ const findPublisherById = async function(req,res){
 
 // //fetch all book by use ref and populate
 const fetchallBook = async function(req,res){
-    const savedData = req.body
-    let x = newBookModel.find()
-    res.send({data: x})
+    //const savedData = req.body
+    let allBooks = await newBookModel.find().populate('author')
+    res.send({data: allBooks})
 }
 
 module.exports.createNewBook= createNewBook
